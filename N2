@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Seconds {
+private:
+    int seconds;
+
+public:
+    // конструктор 
+    Seconds() : seconds(0) {}
+
+    // конструктор с параметром
+    Seconds(int sec) : seconds(sec) {}
+
+    // это метод для установки значения сек
+    void setSeconds(int sec) {
+        seconds = sec;
+    }
+
+    // метод для получения значения сек
+    int getSeconds() const {
+        return seconds;
+    }
+
+    // метод для представления в строчном формате
+    string toString() const {
+        return to_string(seconds);
+    }
+
+    // оператор сравнения
+    bool operator==(const Seconds& other) const {
+        return seconds == other.seconds;
+    }
+};
+
+// главная функция
+int main() {
+    // создание указателей на объекты класса Seconds
+    Seconds* s1 = new Seconds();  // создание s1
+    Seconds* s2 = new Seconds();  // создание s2
+
+    // установка разных значений секу
+    s1->setSeconds(30);
+    s2->setSeconds(45);
+
+    // вывод значений секунд на экран
+    cout << "s1 имеет сек: " << s1->getSeconds() << endl;
+    cout << "s2 имеет сек: " << s2->getSeconds() << endl;
+
+    delete s1;
+    delete s2;
+
+    return 0;
+}
