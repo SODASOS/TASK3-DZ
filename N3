@@ -1,0 +1,34 @@
+#include <iostream>
+
+class Seconds {
+private:
+    int seconds;
+
+public:
+    // тут конструктор
+    Seconds() : seconds(0) {}
+
+    // конcnhernjh c gfhfvtnhfvb
+    Seconds(int s) : seconds(s) {}
+
+    // метод для получения значения seconds
+    int getSeconds() const {
+        return seconds;
+    }
+
+    // метод для представления объекта в виде строк
+    std::string toString() const {
+        return "Seconds: " + std::to_string(seconds);
+    }
+};
+
+int main() {
+    // создание безымянного объекта в динамической памяти
+    std::cout << (new Seconds(17))->toString() << std::endl;
+    // тут я аокажу пример потери памяти
+    std::cout << "теперь мы потеряли указатель на объект Seconds(17)" << std::endl;
+    std::cout << "если продолжим выполнение программы память выделенная под этот объект "
+              << "не будет освобождена что приведет к утечке памяти" << std::endl;
+
+    return 0;
+}
