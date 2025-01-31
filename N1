@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Seconds {
+private:
+    int seconds;
+public:
+    // конструктор 
+    Seconds() : seconds(0) {}
+    
+    // конструктор с параметром
+    Seconds(int s) : seconds(s) {}
+    
+    // метод для установки сколько юудет сек
+    void setSeconds(int s) {
+        seconds = s;
+    }
+    
+    // метод для получения сколько времени в сек
+    int getSeconds() const {
+        return seconds;
+    }
+    
+    // тут я юзанул метод кдля преобразования в строку
+    string toString() const {
+        return to_string(seconds);
+    }
+
+    // оператор который нужен  для  сравнения 
+    bool operator==(const Seconds& other) const {
+        return seconds == other.seconds;
+    }
+};
+
+// функция для изменения значения объекта секонд
+void modifySeconds(Seconds& s) {
+    s.setSeconds(s.getSeconds() + 10); // увеличиваем на 10 сек
+}
+
+int main() {
+    // тут создаются обьекты
+    Seconds s1;       // По умолчанию 0
+    Seconds s2(20);   // 20 секунд
+
+    cout << "значения:" << endl;
+    cout << "s1: " << s1.toString() << " сек" << endl;
+    cout << "s2: " << s2.toString() << " сек" << endl;
+
+    // передаем s2 по ссылке для изменения
+    modifySeconds(s2);
+
+    cout << "после изменения:" << endl;
+    cout << "s1: " << s1.toString() << " сек" << endl;
+    cout << "s2: " << s2.toString() << " сек" << endl;
+
+    // сравнение объектов
+    if (s1 == s2) {
+        cout << "s1 и s2 равны" << endl;
+    } else {
+        cout << "s1 и s2 не равны" << endl;
+    }
+
+    // динамическое создание объектов
+    Seconds* s3 = new Seconds(30);
+    cout << "s3: " << s3->toString() << " сек" << endl;
+
+    
+    delete s3;
+
+    return 0;
+}
